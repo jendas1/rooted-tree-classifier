@@ -69,7 +69,8 @@ def inflexible_labels(constraints, labels):
 def is_log_solvable(constraints):
     labels = list(set("".join(constraints)))
 
-    while il := inflexible_labels(constraints, labels):
+    while inflexible_labels(constraints, labels):
+        il = inflexible_labels(constraints, labels)
         updated_constraints = []
         for constraint in constraints:
             if not (set(il) & set(constraint)): # keep only flexible labels

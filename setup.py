@@ -16,10 +16,11 @@ setup(
     author_email="jendas1@yahoo.com",
     license="Unlicense",
     classifiers=[
-        "License :: OSI Approved :: The Unlicense",
+        "License :: OSI Approved :: The Unlicense (Unlicense)",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.9",
     ],
     packages=["rooted_tree_classifier"],
     include_package_data=True,
+    install_requires=["networkx"]
 )
