@@ -55,4 +55,8 @@ python -m rooted_tree_classifier
 Expected output is `Ω(n)`
 ## Tests
 
-See `tests/tests.py` for some problem examples.
+To execute tests, run the following from the root directory:
+
+```
+python -m unittest discover
+```
