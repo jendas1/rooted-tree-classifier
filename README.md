@@ -3,6 +3,8 @@
 
 This folder contains two programs that partially a round complexity of homogenous LCL problem on (binary) trees.  
 
+- constant_decider
+    - decides whether a problem is O(1) solvable or it is inherently harder
 - log_decider
     - decides whether a problem is log(n) solvable or it is inherently harder
 - log_star_decider
@@ -22,13 +24,13 @@ on a separate line._
 python -m rooted_tree_classifier
 111
 ```
-Expected output is `O(log*n)`
+Expected output is `O(1)`
 
 ```
 python -m rooted_tree_classifier
 112 121 122
 ```
-Expected output is `O(log*n)`
+Expected output is `O(1)`
 
 ```
 python -m rooted_tree_classifier
