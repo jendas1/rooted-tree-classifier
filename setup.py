@@ -7,7 +7,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="rooted-tree-classifier",
-    version="0.1.2",
+    version="0.1.3",
     description="A command-line tool for automatically classifying LCL problems on rooted trees.",
     long_description=README,
     long_description_content_type="text/markdown",

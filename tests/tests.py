@@ -8,7 +8,7 @@ class TestE2E(unittest.TestCase):
     lines = str(result.stdout.decode('utf-8')).split('\n')
 
     self.assertEqual(len(lines), 2)
-    self.assertEqual(lines[0], "O(log*n)")
+    self.assertEqual(lines[0], "O(1)")
     self.assertEqual(lines[1], "")
 
   def testDeciderProblem2(self):
@@ -16,7 +16,7 @@ class TestE2E(unittest.TestCase):
     lines = str(result.stdout.decode('utf-8')).split('\n')
 
     self.assertEqual(len(lines), 2)
-    self.assertEqual(lines[0], "O(log*n)")
+    self.assertEqual(lines[0], "Θ(log*n)")
     self.assertEqual(lines[1], "")
 
   def testDeciderProblem3(self):
@@ -32,7 +32,7 @@ class TestE2E(unittest.TestCase):
     lines = str(result.stdout.decode('utf-8')).split('\n')
 
     self.assertEqual(len(lines), 2)
-    self.assertEqual(lines[0], "O(log*n)")
+    self.assertEqual(lines[0], "O(1)")
     self.assertEqual(lines[1], "")
 
   def testDeciderProblem5(self):
@@ -48,7 +48,7 @@ class TestE2E(unittest.TestCase):
     lines = str(result.stdout.decode('utf-8')).split('\n')
 
     self.assertEqual(len(lines), 2)
-    self.assertEqual(lines[0], "O(log*n)")
+    self.assertEqual(lines[0], "O(1)")
     self.assertEqual(lines[1], "")
 
   def testDecider1(self):
@@ -56,7 +56,7 @@ class TestE2E(unittest.TestCase):
     lines = str(result.stdout.decode('utf-8')).split('\n')
 
     self.assertEqual(len(lines), 2)
-    self.assertEqual(lines[0], "O(log*n)")
+    self.assertEqual(lines[0], "O(1)")
     self.assertEqual(lines[1], "")
 
   def testDecider2(self):

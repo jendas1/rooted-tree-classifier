@@ -14,20 +14,16 @@
 #       - "fine" as removal of a rule bridging s.c.c. cannot create problems because:
 #           - either the "pointed" s.c.c. is log*n solvable, then such rule is useless.
 #           - Otherwise, using a rule would force subtree to be ω(log n) solvable, so again useless.
-from itertools import chain, combinations
 import sys
 
 VERBOSE = False
 
 if __name__ == "__main__":
-    from common import get_constraints_for_labels
+    from common import get_constraints_for_labels, powerset
 else:
-    from .common import get_constraints_for_labels
+    from .common import get_constraints_for_labels, powerset
 
-def powerset(iterable):
-    "powerset([1,2,3]) --> () (1,) (2,) (3,) (1,2) (1,3) (2,3) (1,2,3)"
-    s = list(iterable)
-    return chain.from_iterable(combinations(s, r) for r in range(len(s)+1))
+
 
 def is_log_star_solvable(constraints):
     labels = set("".join(constraints))
