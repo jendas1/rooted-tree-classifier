@@ -1,7 +1,9 @@
 
 ## Description
 
-This folder contains two programs that partially a round complexity of homogenous LCL problem on (binary) trees.  
+This folder contains a program that decides round complexity of homogenous LCL problem on (binary) trees.
+
+The program uses three subroutines to determines a problem's complexity.
 
 - constant_decider
     - decides whether a problem is O(1) solvable or it is inherently harder
