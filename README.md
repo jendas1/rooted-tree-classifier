@@ -16,7 +16,7 @@ The program uses three subroutines to determines a problem's complexity.
 
 1. Install dependencies by `pip3 install -r requirements`.
 
-2. Run `python3 log_decider.py` or `python3 log_star_decider.py` and describe (on standard input) constraints of a problem.
+2. Run `python -m rooted_tree_classifier` and describe (on standard input) constraints of a problem.
 For example:
 
 _Note that one needs to first run the classifier (`python -m rooted_tree_classifier`) and only afterwards provide an input
