@@ -1,7 +1,7 @@
 
 ## Description
 
-This folder contains a program that decides round complexity of homogenous LCL problem on (binary) trees.
+This folder contains a program that decides round complexity of homogenous LCL problems on (binary) trees.
 
 The program uses three subroutines to determines a problem's complexity.
 
