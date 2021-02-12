@@ -14,7 +14,7 @@ The program uses three subroutines to determines a problem's complexity.
 
 ## Usage
 
-1. Install dependencies by `pip3 install -r requirements`.
+1. Install dependencies by `pip3 install -r requirements.txt`.
 
 2. Run `python -m rooted_tree_classifier` and describe (on standard input) constraints of a problem.
 For example:
