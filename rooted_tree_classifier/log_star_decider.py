@@ -39,8 +39,8 @@ def is_log_star_solvable(constraints):
 
 
 
-def _is_log_star_solvable(constraints, labels):
-    root_labels = [[label] for label in labels]
+def _is_log_star_solvable(constraints, labels, a = "ε"):
+    root_labels = [(set(label), label == a) for label in labels]
 
     if VERBOSE:
         certificate = dict()
@@ -49,8 +49,8 @@ def _is_log_star_solvable(constraints, labels):
 
     while True:
         root_labels_enlarged = False
-        for e1 in root_labels:
-            for e2 in root_labels:
+        for e1, a1 in root_labels:
+            for e2, a2 in root_labels:
                 new_root_labels = []
                 for label in labels:
                     for constraint in constrains_for_labels[label]:
@@ -58,10 +58,11 @@ def _is_log_star_solvable(constraints, labels):
                                 (constraint[1] in e1 and constraint[0] in e2):
                             new_root_labels.append(label)
                             break
-                if new_root_labels not in root_labels:
-                    root_labels.append(new_root_labels)
+                root_pair = (new_root_labels, a1 or a2)
+                if root_pair not in root_labels:
+                    root_labels.append(root_pair)
                     if VERBOSE:
-                        certificate[tuple(new_root_labels)] = (tuple(e1),tuple(e2))
+                        certificate[tuple(root_pair)] = ((tuple(e1), a1), (tuple(e2), a2))
                     root_labels_enlarged = True
                     break
             if root_labels_enlarged:
@@ -69,7 +70,7 @@ def _is_log_star_solvable(constraints, labels):
         if not root_labels_enlarged:
             break
 
-    if labels not in root_labels or not constraints:  # not constraints here for the edge-case of a single label
+    if (labels, a != "ε") not in root_labels or not constraints:  # not constraints here for the edge-case of a single label
         return False
     else:
         if VERBOSE:
