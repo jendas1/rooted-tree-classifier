@@ -6,6 +6,9 @@ if __name__ == "__main__":
 else:
     from .common import powerset
     from .log_star_decider import _is_log_star_solvable
+    from .constant_synthesizer import find_algorithm
+
+VERBOSE = False
 
 
 def is_constant_solvable(constraints):
@@ -16,9 +19,11 @@ def is_constant_solvable(constraints):
                                (constraint[0] in reduced_labels and constraint[1] in reduced_labels and constraint[
                                    2] in reduced_labels)]
         for label in reduced_labels:
-            for constraint in constraints:
+            for constraint in reduced_constraints:
                 if constraint.startswith(label + label) or constraint.endswith(label + label):
-                    if _is_log_star_solvable(reduced_constraints, list(reduced_labels),label):
+                    if _is_log_star_solvable(reduced_constraints, list(reduced_labels), label):
+                        if VERBOSE:
+                            find_algorithm(reduced_constraints)
                         return True
 
     return False

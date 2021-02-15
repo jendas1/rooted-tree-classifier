@@ -4,7 +4,7 @@ from .log_star_decider import is_log_star_solvable
 
 
 # Package version
-__version__ = '0.1.5'
+__version__ = '0.1.8'
 
 def decide_complexity(constraints):
     if is_log_solvable(constraints):  # is not empty
