@@ -12,7 +12,7 @@ setup(
     long_description=README,
     long_description_content_type="text/markdown",
     url="https://github.com/jendas1/rooted-tree-classifier",
-    author="Jan Studený",
+    author="Jan Studeny",
     author_email="jendas1@yahoo.com",
     license="Unlicense",
     classifiers=[
