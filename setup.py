@@ -7,7 +7,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="rooted-tree-classifier",
-    version="0.1.8",
+    version="0.1.9",
     description="A command-line tool for automatically classifying LCL problems on rooted trees.",
     long_description=README,
     long_description_content_type="text/markdown",
@@ -22,5 +22,5 @@ setup(
     ],
     packages=["rooted_tree_classifier"],
     include_package_data=True,
-    install_requires=["networkx", "z3-solver"]
+    install_requires=["networkx", "z3-solver", "numpy"]
 )
