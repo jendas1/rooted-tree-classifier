@@ -1,5 +1,5 @@
 from .constant_decider import is_constant_solvable
-from .log_decider import is_log_solvable, polynomial_complexity
+from .log_decider import is_log_solvable
 from .log_star_decider import is_log_star_solvable
 
 

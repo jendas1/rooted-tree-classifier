@@ -22,5 +22,5 @@ setup(
     ],
     packages=["rooted_tree_classifier"],
     include_package_data=True,
-    install_requires=["networkx", "z3-solver"]
+    install_requires=["networkx", "z3-solver", "numpy"]
 )
