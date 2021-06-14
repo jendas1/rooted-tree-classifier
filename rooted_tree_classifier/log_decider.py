@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import math
 
 if __name__ == "__main__":
     from common import get_constraints_for_labels
@@ -50,9 +51,30 @@ def isFlexible(graph, node):
             bigL.append(idx)
     return len(bigL) > 0 and listGcd(bigL) == 1
 
+def isReachable(graph, src, dst):
+  return len(list(filter(lambda x: x > 0, countWalks(graph, src, dst, len(graph))[1:]))) > 0
+
+def isRepeatable(graph, node):
+  return isReachable(graph, node, node)
 
 def inflexible_labels(constraints, labels):
-    constraints_for_labels = get_constraints_for_labels(constraints,labels)
+    graph = create_graph_from_problem(constraints, labels)
+    il = []
+    for label in labels:
+        if not isFlexible(graph, label):
+            il.append(label)
+    return il
+
+def unrepeatable_labels(constraints, labels):
+    graph = create_graph_from_problem(constraints, labels)
+    ul = []
+    for label in labels:
+        if not isRepeatable(graph, label):
+            ul.append(label)
+    return ul
+
+def create_graph_from_problem(constraints, labels):
+    constraints_for_labels = get_constraints_for_labels(constraints, labels)
     graph = {label: [] for label in labels}
     for label in labels:
         for constraint in constraints_for_labels[label]:
@@ -60,11 +82,8 @@ def inflexible_labels(constraints, labels):
                 graph[label].append(constraint[0])
             if constraint[1] not in graph[label]:
                 graph[label].append(constraint[1])
-    il = []
-    for label in labels:
-        if not isFlexible(graph, label):
-            il.append(label)
-    return il
+    return graph
+
 
 def is_log_solvable(constraints):
     labels = list(set("".join(constraints)))
@@ -80,6 +99,36 @@ def is_log_solvable(constraints):
     if VERBOSE:
         print("Constraints:", constraints)
     return True if constraints else False
+
+def polynomial_complexity(constraints):
+    labels = list(set("".join(constraints)))
+    k = 0
+    ul = set(unrepeatable_labels(constraints, labels))
+
+    constraints = recursive_removal_of_labels(constraints, labels, ul)
+    labels = list(set("".join(constraints)))
+
+    while inflexible_labels(constraints, labels):
+        il = set(inflexible_labels(constraints, labels))
+        constraints = recursive_removal_of_labels(constraints, labels, il)
+        labels = list(set("".join(constraints)))
+        k += 1
+    if VERBOSE:
+        print("Constraints:", constraints)
+    return math.inf if constraints else k
+
+
+def recursive_removal_of_labels(constraints, original_labels, labels_to_remove):
+    while labels_to_remove:
+        updated_constraints = []
+        for constraint in constraints:
+            if not (labels_to_remove & set(constraint)):  # keep only flexible labels
+                updated_constraints.append(constraint)
+        new_labels = set([constraint[1] for constraint in constraints])
+        labels_to_remove = (set(original_labels) - labels_to_remove) - new_labels
+        constraints = updated_constraints
+    return constraints
+
 
 def log_decider(constraints):
     if is_log_solvable(constraints):  # is not empty

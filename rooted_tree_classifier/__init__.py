@@ -1,10 +1,10 @@
 from .constant_decider import is_constant_solvable
-from .log_decider import is_log_solvable
+from .log_decider import is_log_solvable, polynomial_complexity
 from .log_star_decider import is_log_star_solvable
 
 
 # Package version
-__version__ = '0.1.8'
+__version__ = '0.2.0'
 
 def decide_complexity(constraints):
     if is_log_solvable(constraints):  # is not empty
@@ -16,4 +16,10 @@ def decide_complexity(constraints):
         else:
             print("Θ(log n)")
     else:
-        print("Ω(n)")
+        k = polynomial_complexity(constraints)
+        if k == 0:
+            print("unsolvable")
+        elif k == 1:
+            print("Θ(n)")
+        else:
+            print(f"Θ(n^(1/{k}))")

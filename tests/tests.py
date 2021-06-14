@@ -28,7 +28,7 @@ class TestE2E(unittest.TestCase):
     lines = str(result.stdout.decode('utf-8')).split('\n')
 
     self.assertEqual(len(lines), 2)
-    self.assertEqual(lines[0], "Ω(n)")
+    self.assertEqual(lines[0], "unsolvable")
     self.assertEqual(lines[1], "")
 
   def testDeciderProblem4(self):
@@ -60,6 +60,27 @@ class TestE2E(unittest.TestCase):
         decide_complexity("212 313 323 131 1x1 xx1".split())
         self.assertEqual(fakeOutput.getvalue().strip(), 'Θ(log*n)')
 
+  # (1:22)
+  # (1:2x)
+  # (1:xx)
+  # (2:11)
+  # (2:1x)
+  # (2:xx)
+  # (x:1a)
+  # (x:2a)
+  # (x:xa)
+  # (x:aa)
+  # (a:bb)
+  # (b:aa)
+  def testDeciderProblem8(self):
+    with patch('sys.stdout', new=StringIO()) as fakeOutput:
+        decide_complexity("212 21x x1x 121 12x x2x 1xa 2xa axa bab aba".split())
+        self.assertEqual(fakeOutput.getvalue().strip(), 'Θ(n^(1/2))')
+
+  def testDeciderProblem9(self):
+    with patch('sys.stdout', new=StringIO()) as fakeOutput:
+        decide_complexity("212 121 12x 1xa bab aba".split())
+        self.assertEqual(fakeOutput.getvalue().strip(), 'Θ(n^(1/2))')
 
   def testDecider1(self):
     result = subprocess.run([sys.executable, '-m', 'rooted_tree_classifier'], input=b"111", capture_output=True)
@@ -74,7 +95,7 @@ class TestE2E(unittest.TestCase):
     lines = str(result.stdout.decode('utf-8')).split('\n')
 
     self.assertEqual(len(lines), 2)
-    self.assertEqual(lines[0], "Ω(n)")
+    self.assertEqual(lines[0], "Θ(n)")
     self.assertEqual(lines[1], "")
 
 
