@@ -1,10 +1,10 @@
 from .constant_decider import is_constant_solvable
-from .log_decider import is_log_solvable
+from .log_decider import is_log_solvable, polynomial_complexity
 from .log_star_decider import is_log_star_solvable
 
 
 # Package version
-__version__ = '0.2.1'
+__version__ = '0.2.2'
 
 def decide_complexity(constraints):
     if is_log_solvable(constraints):  # is not empty
